@@ -107,10 +107,9 @@ public extension String {
         var result = CFStringTokenizerAdvanceToNextToken(tokenizer)
         var latinString = ""
         while result != .None {
-            guard let string = CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription) as? String else {
-                continue
+            if let string = CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription) as? String {
+                latinString += string
             }
-            latinString += string
             result = CFStringTokenizerAdvanceToNextToken(tokenizer)
         }
         return latinString
