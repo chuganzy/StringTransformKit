@@ -27,14 +27,6 @@ public extension String {
         case StripDiacritics
     }
     
-    public enum UnitType {
-        case Word
-        case Sentence
-        case Paragraph
-        case LineBreak
-        case WordBoundary
-    }
-    
     public func stringByApplyingTransform(transformType: TransformType, reverse: Bool = false) -> String {
         let cfTransform: CFString
         switch transformType {
@@ -186,31 +178,5 @@ public extension String {
             result = CFStringTokenizerAdvanceToNextToken(tokenizer)
         }
         return latinString
-    }
-    
-    public func splitByUnit(unitType: UnitType, inLocale locale: NSLocale? = nil) -> [String] {
-        let flag: CFOptionFlags
-        switch unitType {
-        case .Word:
-            flag = kCFStringTokenizerUnitWord
-        case .Sentence:
-            flag = kCFStringTokenizerUnitSentence
-        case .Paragraph:
-            flag = kCFStringTokenizerUnitParagraph
-        case .LineBreak:
-            flag = kCFStringTokenizerUnitLineBreak
-        case .WordBoundary:
-            flag = kCFStringTokenizerUnitWordBoundary
-        }
-        let tokenizer = CFStringTokenizerCreate(nil, self, CFRangeMake(0, CFStringGetLength(self)), flag, locale)
-        var result = CFStringTokenizerAdvanceToNextToken(tokenizer)
-        var retValue = [String]()
-        while result != .None {
-            let range = CFStringTokenizerGetCurrentTokenRange(tokenizer)
-            let string = CFStringCreateWithSubstring(nil, self, range) as String
-            retValue.append(string)
-            result = CFStringTokenizerAdvanceToNextToken(tokenizer)
-        }
-        return retValue
     }
 }
