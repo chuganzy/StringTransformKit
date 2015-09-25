@@ -8,7 +8,7 @@ String Transformation Extensions Supports iOS 8 or Earlier.
 "東京".stringByApplyingKanjiToLatinTransform()
 // => toukyou
 
-"トウキョウ".stringByApplyingHiraganaToHepburnTransform()
+"トウキョウ".stringByApplyingKanaToHepburnTransform()
 // => tokyo
 ```
 
