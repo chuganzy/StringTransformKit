@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                      = 'StringTransformKit'
-  s.version                   = '0.1.1'
+  s.version                   = '0.1.2'
   s.source                    = { :git => 'https://github.com/hoppenichu/StringTransformKit.git', :tag => s.version }
 
   s.summary                   = 'String Transformation Extensions'

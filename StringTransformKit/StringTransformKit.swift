@@ -68,12 +68,7 @@ public extension String {
         return cfString as String
     }
     
-    public func stringByApplyingHiraganaToHepburnTransform() -> String {
-        let katakana = self.stringByApplyingTransform(.HiraganaToKatakana)
-        return katakana.stringByApplyingKatakanaToHepburnTransform()
-    }
-    
-    public func stringByApplyingKatakanaToHepburnTransform() -> String {
+    public func stringByApplyingKanaToHepburnTransform() -> String {
         let replace = [
             "CHE": "CHIE",
             "Che": "Chie",
@@ -160,11 +155,11 @@ public extension String {
             "'": "",
             "~": "",
         ]
-        var retValue = self.stringByApplyingTransform(.LatinToKatakana, reverse: true)
+        var latinString = self.stringByApplyingTransform(.HiraganaToKatakana).stringByApplyingTransform(.LatinToKatakana, reverse: true)
         for (key, value) in replace {
-            retValue = retValue.stringByReplacingOccurrencesOfString(key, withString: value)
+            latinString = latinString.stringByReplacingOccurrencesOfString(key, withString: value)
         }
-        return retValue
+        return latinString
     }
     
     public func stringByApplyingKanjiToLatinTransform(locale: NSLocale? = nil) -> String {
