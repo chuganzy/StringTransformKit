@@ -43,7 +43,7 @@ class StringTransformKitTests: XCTestCase {
         ]
         test.forEach { (key, value) -> () in
             let transformed = key.stringByApplyingKanaToHepburnTransform().uppercaseString
-            XCTAssert(transformed == value, "kana: \(key), expected: \(value), transfromed: \(transformed)")
+            XCTAssert(transformed == value, "kana: \(key), expected: \(value), transformed: \(transformed)")
         }
     }
 }
