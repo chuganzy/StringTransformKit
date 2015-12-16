@@ -18,4 +18,32 @@ class StringTransformKitTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+    
+    func testKanaToHepburnTransform() {
+        let test = [
+            "なんば": "NAMBA",
+            "ほんま": "HOMMA",
+            "さんぺい": "SAMPEI",
+            "はっとり": "HATTORI",
+            "きっかわ": "KIKKAWA",
+            "ほっち": "HOTCHI",
+            "はっちょう": "HATCHO",
+            "せのお": "SENOO",
+            "よこお": "YOKOO",
+            "おおさか": "OSAKA",
+            "おおこうち": "OKOCHI",
+            "おおの": "ONO",
+            "とおやま": "TOYAMA",
+            "たろう": "TARO",
+            "かのう": "KANO",
+            "ちゅうじょう": "CHUJO",
+            "ゆうじ": "YUJI",
+            "じんぐう": "JINGU",
+            "じょうお": "JOO",
+        ]
+        test.forEach { (key, value) -> () in
+            let transformed = key.stringByApplyingKanaToHepburnTransform().uppercaseString
+            XCTAssert(transformed == value, "kana: \(key), expected: \(value), transformed: \(transformed)")
+        }
+    }
 }
