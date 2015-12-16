@@ -70,94 +70,37 @@ public extension String {
     
     public func stringByApplyingKanaToHepburnTransform() -> String {
         let replace = [
-            "CHE": "CHIE",
-            "Che": "Chie",
             "che": "chie",
-            
-            "JE": "JIE",
-            "Je": "Jie",
             "je": "jie",
-            
-            "TI": "TEI",
-            "Ti": "Tei",
             "ti": "tei",
-            
-            "DI": "DEI",
-            "Di": "Dei",
             "di": "dei",
-            
-            "WI": "I",
-            "Wi": "I",
             "wi": "i",
-            
-            "WE": "E",
-            "We": "E",
             "we": "e",
-            
-            "FA": "FUA",
-            "Fa": "Fua",
             "fa": "fua",
-            
-            "FI": "FUI",
-            "Fi": "Fui",
             "fi": "fui",
-            
-            "FE": "FUE",
-            "Fe": "Fue",
             "fe": "fue",
-            
-            "FO": "FUO",
-            "Fo": "Fuo",
             "fo": "fuo",
-            
-            "NB": "MB",
-            "Nb": "Mb",
             "nb": "mb",
-            
-            "NM": "MM",
-            "Nm": "Mm",
             "nm": "mm",
-            
-            "NP": "MP",
-            "Np": "Mp",
             "np": "mp",
-            
-            "OO": "O",
-            "Oo": "O",
             "oo": "o",
-            
-            "OU": "O",
-            "Ou": "O",
             "ou": "o",
-            
-            "UU": "U",
-            "Uu": "U",
             "uu": "u",
-            
-            "V": "B",
             "v": "b",
-            
-            "Ā": "A",
             "ā": "a",
-            
-            "Ī": "I",
             "ī": "i",
-            
-            "Ū": "U",
             "ū": "u",
-            
-            "Ē": "E",
             "ē": "e",
-            
-            "Ō": "O",
             "ō": "o",
-            
             "'": "",
             "~": "",
         ]
-        var latinString = self.stringByApplyingTransform(.HiraganaToKatakana).stringByApplyingTransform(.LatinToKatakana, reverse: true)
-        for (key, value) in replace {
-            latinString = latinString.stringByReplacingOccurrencesOfString(key, withString: value)
+        let katakanaString = stringByApplyingTransform(.HiraganaToKatakana)
+        let latinString = replace.reduce(katakanaString.stringByApplyingTransform(.LatinToKatakana, reverse: true)) { (current, pair) -> String in
+            return current.stringByReplacingOccurrencesOfString(pair.0, withString: pair.1)
+        }
+        if katakanaString.characters.last == "オ" {
+            return latinString + "o"
         }
         return latinString
     }
