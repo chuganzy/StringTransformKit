@@ -1,4 +1,5 @@
 # StringTransformKit
+
 String Transformation Extensions Supports iOS 8 or Earlier.
 
 ```swift
@@ -12,6 +13,7 @@ String Transformation Extensions Supports iOS 8 or Earlier.
 // => tokyo
 ```
 
+[![Travis CI](https://travis-ci.org/hoppenichu/StringTransformKit.svg)](https://travis-ci.org/hoppenichu/StringTransformKit)
 
 ## Installation
 

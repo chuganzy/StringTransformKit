@@ -1,0 +1,9 @@
+lane :test do
+  name = 'StringTransformKit'
+  ['iOS', 'Mac'].each do |platform|
+    scan(
+      scheme: "StringTransformKit-#{platform}",
+      clean: true
+    )
+  end
+end
