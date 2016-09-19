@@ -1,6 +1,6 @@
 # StringTransformKit
 
-String Transformation Extensions Supports iOS 8 or Earlier.
+String Transformation Extensions supports iOS 8 or Earlier.
 
 ```swift
 "toukyou".stringByApplyingTransform(.LatinToHiragana, reverse: false)
